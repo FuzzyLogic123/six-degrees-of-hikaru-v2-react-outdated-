@@ -9,15 +9,16 @@ import MenuBar from "./components/MenuBar/MenuBar";
 function App() {
   return (
     <div className="App">
-      <Background />
-      <MenuBar />
-      <div className="h-screen">
-        <div className="flex flex-row h-full">
-          <div className="flex flex-1 items-center justify-center">
-            <Logo />
+      <div className="bg-[#1C1E23]">
+        <MenuBar />
+        <div className="relative flex flex-col xl:flex-row">
+          <div className="relative flex flex-1 items-center justify-center">
+            <div className="scale-50 md:scale-100">
+              <Logo />
+            </div>
           </div>
-          <div className="flex flex-1 items-center justify-center">
-            <div className="mt-24">
+          <div className="relative flex flex-1 items-center justify-center">
+            <div className="">
               <HikaruPhoto />
             </div>
           </div>

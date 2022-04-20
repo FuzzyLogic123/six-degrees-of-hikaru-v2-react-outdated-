@@ -1,4 +1,3 @@
-import { ReactComponent as Line } from "../../svg/line.svg";
 
 function Logo() {
     return (
