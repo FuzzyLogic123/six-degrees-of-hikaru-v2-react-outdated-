@@ -7,6 +7,7 @@ module.exports = {
         'LexendZetta': ['LexendZetta', 'sans-serif'],
         'Megrim': ['Megrim', 'sans-serif'],
         'Mohave': ['Mohave', 'sans-serif'],
+        'Outfit': ['Outfit', 'sans-serif'],
       },
     },
   },
