@@ -6,8 +6,8 @@ import { ReactComponent as DotsArray } from "../../svg/dotsArray.svg";
 
 function HikaruPhoto() {
     return (
-        <div className="relative m-28">
-            <img className="justify-center items-center max-w-xs" src={Hikaru} alt="Hikaru Nakamura" />
+        <div className="relative scale-75">
+            <img className="max-w-xs" src={Hikaru} alt="Hikaru Nakamura" />
             <div className="absolute -rotate-90 -left-24 -bottom-9 scale-x-110">
                 <TripleHollowArrows />
             </div>

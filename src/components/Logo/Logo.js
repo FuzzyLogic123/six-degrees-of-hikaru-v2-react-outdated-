@@ -2,7 +2,7 @@
 function Logo() {
     return (
         <div>
-            <div className="font-Mohave text-white text-8xl border-b-[1px] border-white text-center p-5">
+            <div className="font-Mohave text-white text-6xl border-b-[1px] border-white text-center p-5">
                 6
             </div>
             <div className="flex flex-row">
@@ -13,11 +13,11 @@ function Logo() {
                     of
                 </p>
             </div>
-            <p className="font-PorterSansBlock text-white text-7xl border-t-[1px] border-white p-6">
+            <p className="text-center font-PorterSansBlock text-white text-7xl border-t-[1px] border-white p-6">
                 Hikaru
             </p>
         </div>
-    );
+    )
 }
 
 export default Logo;
