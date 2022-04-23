@@ -6,30 +6,36 @@ import Background from "./components/stylistic/Background";
 import Logo from "./components/Logo/Logo";
 import MenuBar from "./components/MenuBar/MenuBar";
 import FindPathButton from "./components/FindPathButton/FindPathButton";
+import { ReactComponent as LongArrow } from "./svg/longArrow.svg"
 
 function App() {
   return (
     <div className="App">
-      <div className="relative bg-[#1C1E23]">
-        <MenuBar />
-        <div className="relative flex flex-col xl:flex-row">
+      <div className="relative bg-[url(./images/backgroundImages/background.png)] h-[200vh]">
+        <div className="p-5 lg:pt-0 lg:pb-3">
+          <MenuBar />
+        </div>
+        <div className="relative flex flex-col xl:flex-row xl:ml-28">
           <div className="relative flex flex-col sm:gap-7 flex-1 items-center justify-start">
-            <div className="scale-50 sm:scale-100 m-0 xl:m-0">
+            <div className="scale-50 sm:scale-100 2xl:scale-[1.3] m-0 xl:m-0 2xl:p-28">
               <Logo />
             </div>
-            <div className="">
+            <div className="m-0 sm:m-10 2xl:scale-150">
               <FindPathButton />
             </div>
           </div>
+          <p className="absolute -left-36 bottom-40 font-LibreBarcode128 text-white -rotate-90 text-xl tracking-[7px] 2xl:text-4xl">
+            six degrees
+          </p>
+          <div className="absolute -left-24 bottom-6 scale-[0.25] 2xl:scale-[0.5] 2xl:bottom-36 2xl:-left-20">
+            <LongArrow className="stroke-slate-200 stroke-2 fill-white" />
+          </div>
           <div className="hidden xl:flex flex-1 items-center justify-center">
-            <div className="scale-50 xl:scale-100">
+            <div className="scale-50 xl:scale-100 2xl:scale-[1.5] 2xl:mt-48">
               <HikaruPhoto />
             </div>
           </div>
         </div>
-        <p>
-
-        </p>
       </div>
     </div>
   );
