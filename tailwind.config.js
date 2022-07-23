@@ -10,6 +10,7 @@ module.exports = {
         'Outfit': ['Outfit', 'sans-serif'],
         'AguafinaScript': ['AguafinaScript', 'sans-serif'],
         'LibreBarcode128': ['LibreBarcode128', 'sans-serif'],
+        'Ephesis': ['Ephesis', 'sans-serif'],
       },
     },
   },

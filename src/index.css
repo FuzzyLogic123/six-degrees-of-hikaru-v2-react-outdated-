@@ -37,6 +37,11 @@
   src: url('../public/fonts/LibreBarcode128Text-Regular.ttf');
 }
 
+@font-face {
+  font-family: Ephesis;
+  src: url('../public/fonts/Ephesis-Regular.ttf');
+}
+
 /*
 body, html {
   height: 100%;

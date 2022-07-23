@@ -7,11 +7,15 @@ import Logo from "./components/Logo/Logo";
 import MenuBar from "./components/MenuBar/MenuBar";
 import FindPathButton from "./components/FindPathButton/FindPathButton";
 import { ReactComponent as LongArrow } from "./svg/longArrow.svg"
+import Testimonials from "./components/Testimonial/Testimonial";
+import thePope from "./images/the-pope.png"
+import kevinHart from "./images/kevin-hart.jpg"
+import jesus from "./images/jesus.jpg"
 
 function App() {
   return (
     <div className="App">
-      <div className="relative bg-[url(./images/backgroundImages/background.png)] h-[200vh]">
+      <div className="relative bg-[url(./images/backgroundImages/background.png)]">
         <div className="p-5 lg:pt-0 lg:pb-3">
           <MenuBar />
         </div>
@@ -20,7 +24,7 @@ function App() {
             <div className="scale-50 sm:scale-100 2xl:scale-[1.3] m-0 xl:m-0 2xl:p-28">
               <Logo />
             </div>
-            <div className="m-0 sm:m-10 2xl:scale-150">
+            <div className="m-5 sm:m-10 2xl:scale-150">
               <FindPathButton />
             </div>
           </div>
@@ -35,6 +39,28 @@ function App() {
               <HikaruPhoto />
             </div>
           </div>
+        </div>
+        <div className="mt-10 xl:scale-[0.9] md:scale-[0.6]">
+          <Testimonials quotes={[
+            [
+              "This website means nothing to me",
+              "Kevin Hart",
+              kevinHart
+
+            ],
+            [
+              "Only when a mosquito lands on your testicles, will you truly learn to solve a problem without violence",
+              "Dalai Lama",
+              thePope
+
+            ],
+            [
+              "This made me a better chess player",
+              "Jesus",
+              jesus
+
+            ]
+          ]} />
         </div>
       </div>
     </div>
