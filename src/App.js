@@ -7,7 +7,7 @@ import Logo from "./components/Logo/Logo";
 import MenuBar from "./components/MenuBar/MenuBar";
 import FindPathButton from "./components/FindPathButton/FindPathButton";
 import { ReactComponent as LongArrow } from "./svg/longArrow.svg"
-import Testimonials from "./components/Testimonial/Testimonial";
+import Testimonials from "./components/Testimonial/Testimonials";
 import thePope from "./images/the-pope.png"
 import kevinHart from "./images/kevin-hart.jpg"
 import jesus from "./images/jesus.jpg"
@@ -40,7 +40,7 @@ function App() {
             </div>
           </div>
         </div>
-        <div className="mt-10 xl:scale-[0.9] md:scale-[0.6]">
+        <div>
           <Testimonials quotes={[
             [
               "This website means nothing to me",
