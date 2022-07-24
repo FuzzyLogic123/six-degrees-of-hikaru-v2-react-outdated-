@@ -62,11 +62,15 @@ function App() {
           ]
         ]} />
       </div>
-      <div className="sm:py-20 xl:py-48">
+      <div className="sm:py-20 xl:py-36">
         <h1 className="text-5xl xl:text-7xl uppercase leading-tight text-white text-center py-0 px-4">paths to <b>Hikaru</b> calculated so far</h1>
         <h1 className="text-8xl xl:text-9xl font-bold text-center py-14 text-[#EA0990]">1,304</h1>
       </div>
-      {/* </div> */}
+
+
+      <div className="relative h-96 bg-[url(./images/backgroundImages/heroDark.jpg)] circular-div w-screen">
+
+      </div>
     </div>
   );
 }

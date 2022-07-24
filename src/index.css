@@ -68,3 +68,19 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.circular-div { 
+  clip-path: polygon(0 10%, 100% 0, 100% 100%, 0 100%);
+}
+
+@media (min-width: 1280px) {
+  .circular-div {
+    clip-path: polygon(0 30%, 100% 0, 100% 100%, 0 100%); 
+    }
+   }
+
+   @media (min-width: 768px) {
+  .circular-div {
+    clip-path: polygon(0 20%, 100% 0, 100% 100%, 0 100%); 
+    }
+   }
