@@ -14,8 +14,8 @@ import jesus from "./images/jesus.jpg"
 
 function App() {
   return (
-    <div className="App ">
-      <div className="relative bg-[url(./images/backgroundImages/background.png)]">
+    <div className="App bg-[url(./images/backgroundImages/background.png)]">
+      {/* <div className="relative "> */}
         <div className="p-5 lg:pt-0 lg:pb-3">
           <MenuBar />
         </div>
@@ -62,7 +62,11 @@ function App() {
             ]
           ]} />
         </div>
-      </div>
+        {/* <div> */}
+          <h1 className="text-5xl uppercase leading-tight text-white text-center py-0 px-4">paths to <b>Hikaru</b> calculated so far</h1>
+      <h1 className="text-8xl font-bold text-center py-14 text-[#EA0990]">1,304</h1>
+        {/* </div> */}
+      {/* </div> */}
     </div>
   );
 }
