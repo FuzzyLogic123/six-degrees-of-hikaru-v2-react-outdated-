@@ -42,19 +42,15 @@
   src: url('../public/fonts/Ephesis-Regular.ttf');
 }
 
-/*
-body, html {
-  height: 100%;
-}
-*/
 html {
-background-color: black;
+  background-color: black;
 }
-/*
-#root {
-  height: 100%;
+
+html, body {
+  position: relative;
+  overflow-x: hidden;
 }
-*/
+
 
 body {
   margin: 0;
@@ -63,6 +59,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  overflow-x: hidden;
 
 }
 

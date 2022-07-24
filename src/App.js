@@ -14,7 +14,7 @@ import jesus from "./images/jesus.jpg"
 
 function App() {
   return (
-    <div className="App">
+    <div className="App ">
       <div className="relative bg-[url(./images/backgroundImages/background.png)]">
         <div className="p-5 lg:pt-0 lg:pb-3">
           <MenuBar />
