@@ -69,7 +69,8 @@ code {
     monospace;
 }
 
-.circular-div { 
+.circular-div {
+  padding-top: 5rem;
   clip-path: polygon(0 10%, 100% 0, 100% 100%, 0 100%);
 }
 
