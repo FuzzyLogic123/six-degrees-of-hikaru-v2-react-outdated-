@@ -42,18 +42,24 @@
   src: url('../public/fonts/Ephesis-Regular.ttf');
 }
 
-/*
 @font-face {
-  font-family: Roboto;
-  src: url('../public/fonts/Roboto-Regular.ttf');
+  font-family: Sen;
+  src: url('../public/fonts/Sen-Regular.ttf');
 }
-*/
+
+
+@font-face {
+  font-family: RobotoCondensed;
+  src: url('../public/fonts/RobotoCondensed-Bold.ttf');
+}
+
 
 html {
   background-color: black;
 }
 
-html, body {
+html,
+body {
   position: relative;
   overflow-x: hidden;
 }
@@ -83,12 +89,47 @@ code {
 
 @media (min-width: 1280px) {
   .circular-div {
-    clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 100%); 
-    }
-   }
+    clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 100%);
+  }
+}
 
-   @media (min-width: 768px) {
+@media (min-width: 768px) {
   .circular-div {
-    clip-path: polygon(0 5%, 100% 0, 100% 100%, 0 100%); 
-    }
-   }
+    clip-path: polygon(0 5%, 100% 0, 100% 100%, 0 100%);
+  }
+}
+
+.arrow-rotation {
+  transform: rotate(110deg);
+  /* background-color: brown; */
+}
+
+
+@media (min-width: 768px) {
+  .arrow-rotation {
+    transform: rotate(120deg);
+    /* background-color: aqua; */
+  }
+}
+
+@media (min-width: 1000px) {
+  .arrow-rotation {
+    transform: rotate(130deg);
+    /* background-color: aqua; */
+  }
+}
+
+
+@media (min-width: 1536px) {
+  .arrow-rotation {
+    transform: rotate(110deg);
+    /* background-color: blueviolet; */
+  }
+}
+
+@media (min-width: 2000px) {
+  .arrow-rotation {
+    transform: rotate(120deg);
+    /* background-color: pink; */
+  }
+}

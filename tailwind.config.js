@@ -11,7 +11,10 @@ module.exports = {
         'AguafinaScript': ['AguafinaScript', 'sans-serif'],
         'LibreBarcode128': ['LibreBarcode128', 'sans-serif'],
         'Ephesis': ['Ephesis', 'sans-serif'],
+        'Sen': ['Sen', 'sans-serif'],
         'Roboto': ['Roboto', 'sans-serif'],
+        'RobotoCondensed': ['RobotoCondensed', 'sans-serif'],
+
       },
     },
   },

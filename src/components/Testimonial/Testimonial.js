@@ -16,7 +16,8 @@ function Testimonial({ quote }) {
                     {"-" + quote[1]}
                 </p>
             </div>
-        </div>);
+        </div>
+        );
 }
 
 export default Testimonial;
