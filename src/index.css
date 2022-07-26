@@ -42,12 +42,17 @@
   src: url('../public/fonts/Ephesis-Regular.ttf');
 }
 
-/*
 @font-face {
-  font-family: Roboto;
-  src: url('../public/fonts/Roboto-Regular.ttf');
+  font-family: Sen;
+  src: url('../public/fonts/Sen-Regular.ttf');
 }
-*/
+
+
+@font-face {
+  font-family: RobotoCondensed;
+  src: url('../public/fonts/RobotoCondensed-Bold.ttf');
+}
+
 
 html {
   background-color: black;
@@ -96,16 +101,35 @@ code {
 
 .arrow-rotation {
   transform: rotate(110deg);
+  /* background-color: brown; */
 }
 
-@media (min-width: 1280px) {
-  .arrow-rotation {
-    transform: rotate(140deg);
-  }
-}
 
 @media (min-width: 768px) {
   .arrow-rotation {
-    transform: rotate(115deg);
+    transform: rotate(120deg);
+    /* background-color: aqua; */
+  }
+}
+
+@media (min-width: 1000px) {
+  .arrow-rotation {
+    transform: rotate(130deg);
+    /* background-color: aqua; */
+  }
+}
+
+
+@media (min-width: 1536px) {
+  .arrow-rotation {
+    transform: rotate(110deg);
+    /* background-color: blueviolet; */
+  }
+}
+
+@media (min-width: 2000px) {
+  .arrow-rotation {
+    transform: rotate(120deg);
+    /* background-color: pink; */
   }
 }
