@@ -53,7 +53,8 @@ html {
   background-color: black;
 }
 
-html, body {
+html,
+body {
   position: relative;
   overflow-x: hidden;
 }
@@ -83,12 +84,28 @@ code {
 
 @media (min-width: 1280px) {
   .circular-div {
-    clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 100%); 
-    }
-   }
+    clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 100%);
+  }
+}
 
-   @media (min-width: 768px) {
+@media (min-width: 768px) {
   .circular-div {
-    clip-path: polygon(0 5%, 100% 0, 100% 100%, 0 100%); 
-    }
-   }
+    clip-path: polygon(0 5%, 100% 0, 100% 100%, 0 100%);
+  }
+}
+
+.arrow-rotation {
+  transform: rotate(110deg);
+}
+
+@media (min-width: 1280px) {
+  .arrow-rotation {
+    transform: rotate(140deg);
+  }
+}
+
+@media (min-width: 768px) {
+  .arrow-rotation {
+    transform: rotate(115deg);
+  }
+}
