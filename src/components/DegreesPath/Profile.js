@@ -11,7 +11,7 @@ function Profile({ name, title, profilePicture, username, rating, position }) {
     return (
         <div style={{ textAlign: positionCSS }} className='w-full relative h-[25vh]'>
             <div className='px-4 text-center inline-block sm:mx-16 h-full'>
-                <img className="rounded-full h-1/2 m-auto" src={profilePicture} alt='user profile avatar' />
+                <img className="rounded-full" src={profilePicture} alt='user profile avatar' />
                 <div className='bg-[#b33430] rounded-[0.3rem] text-white text-xs lg:text-lg xl:text-2xl font-semibold p-1 m-4 inline-block'>
                     {title}
                 </div>
