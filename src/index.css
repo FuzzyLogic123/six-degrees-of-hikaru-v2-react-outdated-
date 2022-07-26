@@ -42,6 +42,13 @@
   src: url('../public/fonts/Ephesis-Regular.ttf');
 }
 
+/*
+@font-face {
+  font-family: Roboto;
+  src: url('../public/fonts/Roboto-Regular.ttf');
+}
+*/
+
 html {
   background-color: black;
 }
