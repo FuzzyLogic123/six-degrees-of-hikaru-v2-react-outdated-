@@ -1,17 +1,24 @@
+
 function MenuBar() {
-    return ( 
+    return (
         <div className="pb-5 relative flex flex-row justify-evenly w-full items-center ">
             <div className="text-center font-lexendZetta text-white sm:my-14 mx-6 text-xl scale-y-75 tracking-widest hover:line-through hover:cursor-pointer">
-                home
+                <a href="#home">
+                    home
+                </a>
             </div>
             <div className="text-center font-lexendZetta text-white sm:my-14 mx-6 text-xl scale-y-75 tracking-widest hover:line-through hover:cursor-pointer">
-                six degrees
+                <a href="#six-degrees">
+                    six degrees
+                </a>
             </div>
             <div className="text-center font-lexendZetta text-white sm:my-14 mx-6 text-xl scale-y-75 tracking-widest hover:line-through hover:cursor-pointer">
-                about
+                <a href="#about">
+                    about
+                </a>
             </div>
-        </div>
-     );
+        </div >
+    );
 }
 
 export default MenuBar;

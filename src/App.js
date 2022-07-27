@@ -1,3 +1,4 @@
+import { React } from 'react';
 import HikaruPhoto from "./components/HikaruPhoto/HikaruPhoto"
 import Logo from "./components/Logo/Logo";
 import MenuBar from "./components/MenuBar/MenuBar";
@@ -21,7 +22,7 @@ function App() {
       </div>
       <div className="relative flex flex-col xl:flex-row xl:ml-28">
         <div className="relative flex flex-col sm:gap-7 flex-1 items-center justify-start">
-          <div className="scale-50 sm:scale-100 2xl:scale-[1.3] m-0 xl:m-0 2xl:p-28">
+          <div id='home' className="scale-50 sm:scale-100 2xl:scale-[1.3] m-0 xl:m-0 2xl:p-28">
             <Logo />
           </div>
           <div className="m-5 sm:m-10 2xl:scale-150">
@@ -68,7 +69,7 @@ function App() {
       </div>
 
 
-      <div className="relative bg-[url(./images/backgroundImages/heroDark.jpg)] circular-div w-screen">
+      <div id="six-degrees" className="relative bg-[url(./images/backgroundImages/heroDark.jpg)] circular-div w-screen">
 
         <HeroHeader svg={<ConnectionsSvg />} colour={"#818CF8"} secondaryText={"See how you compare"} mainText={"Find your path"} />
 
@@ -82,7 +83,9 @@ function App() {
 
         <DegreesPath />
 
-        <HeroHeader svg={<ExclamationSvg />} colour={"#53DAA1"} secondaryText={"About the website"} mainText={"How it works"} />
+        <div id='about'>
+          <HeroHeader svg={<ExclamationSvg />} colour={"#53DAA1"} secondaryText={"About the website"} mainText={"How it works"} />
+        </div>
 
         <p className="text-white text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl leading-7 text-center font-Sen m-10 md:m-20 xl:m-32 2xl:mx-72">
           The aim of this website is to find the quickest path from you to Grandmaster Hikaru by games won.
