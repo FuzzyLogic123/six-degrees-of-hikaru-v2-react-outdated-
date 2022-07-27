@@ -8,10 +8,10 @@ function Profile({ name, title, profilePicture, username, rating, position }) {
     return (
         <>
             <div style={{ textAlign: positionCSS }} className='w-full relative'>
-                <div className='px-4 text-center inline-block 3xl:scale-150 relative'>
+                <div className='px-4 text-center inline-block relative'>
                     {/* remove explicit height when using real chess.com images */}
                     <img className="rounded-full m-auto border-white border-4" src={profilePicture} alt='user profile avatar' />
-                    <h1 className='font-Outfit text-white tracking-wider text-lg lg:text-xl xl:text-2xl inline-block my-1 lg:my-3'>
+                    <h1 className='font-Outfit text-white tracking-wider text-lg lg:text-xl xl:text-2xl inline-block my-1'>
                         {name}
                     </h1>
                     {
@@ -32,9 +32,9 @@ function Profile({ name, title, profilePicture, username, rating, position }) {
                     </h3>
                 </div>
             </div>
-            <div className='relative w-full text-center scale-75 md:scale-125 2xl:scale-[2] 3xl:scale-[3] '>
+            <div className='relative w-full text-center scale-75'>
                 <div className={arrowClass + " inline-block"}>
-                    <LongArrow className='arrow-rotation ' />
+                    <LongArrow className='arrow-rotation' />
                 </div>
             </div>
         </>

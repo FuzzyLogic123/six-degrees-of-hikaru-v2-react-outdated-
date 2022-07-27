@@ -104,18 +104,18 @@ code {
   /* background-color: brown; */
 }
 
-
+/* 
 @media (min-width: 768px) {
   .arrow-rotation {
     transform: rotate(120deg);
-    /* background-color: aqua; */
+    background-color: aqua;
   }
 }
 
 @media (min-width: 1000px) {
   .arrow-rotation {
     transform: rotate(130deg);
-    /* background-color: aqua; */
+    background-color: aqua;
   }
 }
 
@@ -123,13 +123,13 @@ code {
 @media (min-width: 1536px) {
   .arrow-rotation {
     transform: rotate(120deg);
-    /* background-color: blueviolet; */
+    background-color: blueviolet;
   }
 }
 
 @media (min-width: 2000px) {
   .arrow-rotation {
     transform: rotate(140deg);
-    /* background-color: pink; */
+    background-color: pink;
   }
-}
+} */
