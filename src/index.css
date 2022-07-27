@@ -122,14 +122,14 @@ code {
 
 @media (min-width: 1536px) {
   .arrow-rotation {
-    transform: rotate(110deg);
+    transform: rotate(120deg);
     /* background-color: blueviolet; */
   }
 }
 
 @media (min-width: 2000px) {
   .arrow-rotation {
-    transform: rotate(120deg);
+    transform: rotate(140deg);
     /* background-color: pink; */
   }
 }

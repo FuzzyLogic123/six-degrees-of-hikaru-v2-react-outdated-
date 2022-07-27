@@ -16,6 +16,9 @@ module.exports = {
         'RobotoCondensed': ['RobotoCondensed', 'sans-serif'],
 
       },
+      screens: {
+        '3xl': '2000px'
+      },
     },
   },
   plugins: [],
