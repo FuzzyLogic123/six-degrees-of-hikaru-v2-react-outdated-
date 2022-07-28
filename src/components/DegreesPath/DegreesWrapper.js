@@ -4,9 +4,47 @@ import { ReactComponent as KingSvg } from '../../svg/king.svg';
 import HeroHeader from '../HeroHeader/HeroHeader';
 import DegreesPath from "./DegreesPath";
 
+const fetchBestWin = async (username, timeControl, requestAttemps) => {
+    if (requestAttemps !== 0) {
+        try {
+            const res = await fetch("https://us-central1-six-degrees-of-hikaru-cf099.cloudfunctions.net/scraper", {
+            // const res = await fetch("http://192.168.50.48:5001/six-degrees-of-hikaru-cf099/us-central1/scraper", {
+                method: 'POST',
+                body: JSON.stringify({
+                    "text": `https://www.chess.com/stats/live/${timeControl}/${username}`
+                })
+            });
+            const response = await res.json();
+            console.log(response);
+            return response;
+        } catch(e) {
+            console.log(e);
+            await fetchBestWin(username, timeControl, requestAttemps - 1);
+        }
+    } else {
+        return false;
+    }
+}
 
 function DegreesWrapper() {
-    const [setUserChain, userChain] = useState([]);
+    const [setDisplayToUserChain, displayToUserChain] = useState([]);
+    const extendUserChain = () => {
+        // check database for user
+
+        // request cloud function
+        
+
+        // if response == ok
+            // userChain.append(response)
+        // else if response == bad and attempts != 0:
+            // extendUserChain(attempts - 1)
+        // else:
+            // check for most recent wins as a starting point
+    }
+
+    const test = fetchBestWin("FuzzyLogic", "bullet", 3);
+    console.log(test);
+
 
     return (
         <div id='six-degrees'>
