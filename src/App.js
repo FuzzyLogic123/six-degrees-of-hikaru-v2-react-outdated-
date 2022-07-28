@@ -11,6 +11,8 @@ import jesus from "./images/jesus.jpg"
 import HeroHeader from "./components/HeroHeader/HeroHeader";
 import { ReactComponent as ConnectionsSvg } from './svg/connectionsSvg.svg';
 import { ReactComponent as ExclamationSvg } from './svg/exclamationSvg.svg';
+import { ReactComponent as King } from './svg/king.svg';
+
 import Footer from "./components/Footer/Footer";
 import DegreesPath from "./components/DegreesPath/DegreesPath";
 
@@ -74,10 +76,13 @@ function App() {
         <HeroHeader svg={<ConnectionsSvg />} colour={"#818CF8"} secondaryText={"See how you compare"} mainText={"Find your path"} />
 
 
-
-        <div className="px-8 text-center pt-12 pb-16">
-          <input className="text-white w-5/6 lg:w-3/4 p-3 rounded-md border-2 border-slate-800 bg-slate-900 xl:text-xl text-lg" type="text" placeholder="chess.com username" />
-        </div>
+          <div className="pt-12 pb-16 flex justify-center gap-6 w-full">
+            <input className="basis-2/4 inline-block text-white p-3 rounded-md border-2 border-slate-800 bg-slate-900 xl:text-xl text-lg" type="text" placeholder="chess.com username" />
+            <button className='inline-block bg-slate-900 border-slate-800 border-2 p-3 rounded-md xl:text-xl text-lg text-white'>
+              {/* <p className='opacity-50 hover:opacity-90'>Find your Path</p> */}
+              <King className='stroke-slate-400 hover:stroke-slate-50'/>
+            </button>
+          </div>
 
 
 
