@@ -6,6 +6,12 @@ import DegreesPath from "./DegreesPath";
 import { queryDatabase } from '../../firebaseConfig';
 
 
+// TODO - Implement most recent win getAlternateUser() (as backup - can copy and paste previous implementation) - probably import that function for cleanliness
+// TODO - Prevent infinite loops/ cycles where players best wins go on forever (including when the backup suggests someone that will again cause an infinite loop)
+// can be achieved by using ref to track list of players that have been tried so far, never use these to enter the list.
+// TODO - add dropdown to select bullet or blitz (update this in the path finding code)
+// TODO - update rendering to show displayToUserChain (add animations)
+
 const MAX_REQUEST_ATTEMPTS = 3;
 
 const fetchBestWin = async (username, timeControl, requestAttemps) => {
