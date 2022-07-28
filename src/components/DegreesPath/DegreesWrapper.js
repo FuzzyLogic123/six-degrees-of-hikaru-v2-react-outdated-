@@ -3,6 +3,8 @@ import { ReactComponent as ConnectionsSvg } from '../../svg/connectionsSvg.svg';
 import { ReactComponent as KingSvg } from '../../svg/king.svg';
 import HeroHeader from '../HeroHeader/HeroHeader';
 import DegreesPath from "./DegreesPath";
+import { queryDatabase } from '../../firebaseConfig';
+
 
 const MAX_REQUEST_ATTEMPTS = 3;
 
@@ -31,16 +33,26 @@ const fetchBestWin = async (username, timeControl, requestAttemps) => {
 function DegreesWrapper() {
     const [displayToUserChain, setDisplayToUserChain] = useState([]);
     const extendUserChain = async (userChain) => {
-        console.log(userChain.at(-1).name);
-        if (userChain.at(-1).name === "Hikaru Nakamura") {
+        const mostRecentUser = userChain.at(-1);
+        if (mostRecentUser.name === "Hikaru Nakamura") {
             setDisplayToUserChain(userChain);
             console.log(userChain);
             return userChain;
         }
+        if (!mostRecentUser?.username) {
+            console.error("user does not have a username!");
+        }
         // check database for user
+        console.log(mostRecentUser.username)
+        const databaseResult = await queryDatabase(mostRecentUser.username, "bullet")
+        if (databaseResult) {
+            mostRecentUser.next_player = databaseResult.next_player;
+            console.log(databaseResult);
+            console.log('database returned next :  ' + databaseResult.next_player);
+        }
 
         // request cloud function --> get game type from dropdown
-        const bestWin = await fetchBestWin(userChain.at(-1).next_player, "bullet", MAX_REQUEST_ATTEMPTS);
+        const bestWin = await fetchBestWin(mostRecentUser.next_player, "bullet", MAX_REQUEST_ATTEMPTS);
         if (bestWin) {
             userChain.push(bestWin);
             setDisplayToUserChain(userChain);
@@ -61,7 +73,7 @@ function DegreesWrapper() {
                 <button onClick={async () => {
                     // get input data from input fields
                     const firstUserData = await fetchBestWin("FuzzyLogic12", "bullet", MAX_REQUEST_ATTEMPTS)
-                    console.log(await extendUserChain([firstUserData]));
+                    extendUserChain([firstUserData]);
                 }} className='inline-block bg-slate-900 border-slate-800 border-2 p-3 rounded-md xl:text-xl text-lg text-white'>
                     <KingSvg className='stroke-slate-400 hover:stroke-slate-50' />
                 </button>
