@@ -1,20 +1,20 @@
 import { React } from 'react';
-import HikaruPhoto from "./components/HikaruPhoto/HikaruPhoto"
+import FindPathButton from "./components/FindPathButton/FindPathButton";
+import HeroHeader from "./components/HeroHeader/HeroHeader";
+import HikaruPhoto from "./components/HikaruPhoto/HikaruPhoto";
 import Logo from "./components/Logo/Logo";
 import MenuBar from "./components/MenuBar/MenuBar";
-import FindPathButton from "./components/FindPathButton/FindPathButton";
-import { ReactComponent as LongArrow } from "./svg/longArrow.svg"
 import Testimonials from "./components/Testimonial/Testimonials";
-import thePope from "./images/the-pope.png"
-import kevinHart from "./images/kevin-hart.jpg"
-import jesus from "./images/jesus.jpg"
-import HeroHeader from "./components/HeroHeader/HeroHeader";
-import { ReactComponent as ConnectionsSvg } from './svg/connectionsSvg.svg';
+import jesus from "./images/jesus.jpg";
+import chrisRock from "./images/chris-rock.jpg";
+import thePope from "./images/the-pope.png";
+import { ReactComponent as LongArrow } from "./svg/longArrow.svg";
+
 import { ReactComponent as ExclamationSvg } from './svg/exclamationSvg.svg';
-import { ReactComponent as King } from './svg/king.svg';
+
 
 import Footer from "./components/Footer/Footer";
-import DegreesPath from "./components/DegreesPath/DegreesPath";
+import DegreesWrapper from './components/DegreesPath/DegreesWrapper';
 
 function App() {
   return (
@@ -48,7 +48,7 @@ function App() {
           [
             "This website means nothing to me",
             "Kevin Hart",
-            kevinHart
+            chrisRock
 
           ],
           [
@@ -71,22 +71,9 @@ function App() {
       </div>
 
 
-      <div id="six-degrees" className="relative bg-[url(./images/backgroundImages/heroDark.jpg)] circular-div w-screen">
+      <div className="relative bg-[url(./images/backgroundImages/heroDark.jpg)] circular-div w-screen bg-cover">
 
-        <HeroHeader svg={<ConnectionsSvg />} colour={"#818CF8"} secondaryText={"See how you compare"} mainText={"Find your path"} />
-
-
-          <div className="pt-12 pb-16 flex justify-center gap-6 w-full">
-            <input className="basis-2/4 inline-block text-white p-3 rounded-md border-2 border-slate-800 bg-slate-900 xl:text-xl text-lg" type="text" placeholder="chess.com username" />
-            <button className='inline-block bg-slate-900 border-slate-800 border-2 p-3 rounded-md xl:text-xl text-lg text-white'>
-              {/* <p className='opacity-50 hover:opacity-90'>Find your Path</p> */}
-              <King className='stroke-slate-400 hover:stroke-slate-50'/>
-            </button>
-          </div>
-
-
-
-        <DegreesPath />
+        <DegreesWrapper />
 
         <div id='about'>
           <HeroHeader svg={<ExclamationSvg />} colour={"#53DAA1"} secondaryText={"About the website"} mainText={"How it works"} />
