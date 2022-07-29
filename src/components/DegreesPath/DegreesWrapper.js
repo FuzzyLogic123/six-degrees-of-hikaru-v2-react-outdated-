@@ -4,7 +4,7 @@ import { ReactComponent as KingSvg } from '../../svg/king.svg';
 import HeroHeader from '../HeroHeader/HeroHeader';
 import DegreesPath from "./DegreesPath";
 import { queryDatabase } from '../../firebaseConfig';
-import { fetchBestWin, getNextOptionHelper } from './functions';
+import { fetchBestWin, getNextOptionHelper, getMostRecentWin } from './functions';
 
 
 // TODO - Implement most recent win getAlternateUser() (as backup - can copy and paste previous implementation) - probably import that function for cleanliness
@@ -13,10 +13,10 @@ import { fetchBestWin, getNextOptionHelper } from './functions';
 // TODO - add dropdown to selectTIME_CONTROLor blitz (update this in the path finding code)
 // TODO - update rendering to show displayToUserChain (add animations)
 
-const MAX_REQUEST_ATTEMPTS = 3;
+const MAX_REQUEST_ATTEMPTS = 1;
 
 function DegreesWrapper() {
-    const TIME_CONTROL = "bullet";
+    const TIME_CONTROL = "blitz";
     const [displayToUserChain, setDisplayToUserChain] = useState([]);
     const extendUserChain = async (userChain) => {
         const mostRecentUser = userChain.at(-1);
@@ -42,13 +42,29 @@ function DegreesWrapper() {
         if (bestWin) {
             userChain.push(bestWin);
             setDisplayToUserChain(userChain);
-            extendUserChain(userChain);
         } else {
-            const mostRecentWin = getNextOptionHelper(userChain, TIME_CONTROL);
+            const mostRecentWin = await getNextOptionHelper(userChain, TIME_CONTROL); //should basically always return someone unless every player in the chain has not won any games of that time control
             console.log(mostRecentWin);
+            userChain.at(-1).next_player = mostRecentWin;
         }
+        await extendUserChain(userChain);
+    }
 
-
+    const onClickHandler = async () => {
+        const USERNAME = "playbyplayz"
+        const firstUserData = await fetchBestWin(USERNAME, TIME_CONTROL, MAX_REQUEST_ATTEMPTS)
+        if (!firstUserData.next_player) {
+            const mostRecentWin = await getMostRecentWin(USERNAME, TIME_CONTROL);
+            if (mostRecentWin) {
+                firstUserData.next_player = mostRecentWin;
+            } else {
+                console.error("the player seems to have won no games within this time control");
+                return;
+            }
+        } else if (!firstUserData) {
+            console.error("invalid username");
+        }
+        extendUserChain([firstUserData]);
     }
 
 
@@ -57,12 +73,8 @@ function DegreesWrapper() {
             <HeroHeader svg={<ConnectionsSvg />} colour={"#818CF8"} secondaryText={"See how you compare"} mainText={"Find your path"} />
             <div className="pt-12 pb-16 flex justify-center gap-6 w-full">
                 <input className="basis-2/4 inline-block text-white p-3 rounded-md border-2 border-slate-800 bg-slate-900 xl:text-xl text-lg" type="text" placeholder="chess.com username" />
-                <button onClick={async () => {
-                    // get input data from input fields
-                    const firstUserData = await fetchBestWin("Aads976", TIME_CONTROL, MAX_REQUEST_ATTEMPTS)
-                    extendUserChain([firstUserData]);
-                }} className='inline-block bg-slate-900 border-slate-800 border-2 p-3 rounded-md xl:text-xl text-lg text-white'>
-                    <KingSvg className='stroke-slate-400 hover:stroke-slate-50' />
+                <button onClick={onClickHandler} className='inline-block bg-slate-900 border-slate-800 border-2 p-3 rounded-md xl:text-xl text-lg text-white hover:stroke-slate-50 stroke-slate-400'>
+                    <KingSvg />
                 </button>
             </div>
             <DegreesPath />

@@ -1,5 +1,5 @@
 const fetchBestWin = async (username, timeControl, requestAttemps) => {
-    if (requestAttemps !== 0) {
+    if (requestAttemps !== 0 && username) {
         try {
             // const res = await fetch("https://us-central1-six-degrees-of-hikaru-cf099.cloudfunctions.net/scraper", {
             const res = await fetch("http://localhost:5001/six-degrees-of-hikaru-cf099/us-central1/scraper", {
@@ -59,18 +59,18 @@ const getMostRecentWin = async (username, timeControl, alreadyTriedUsers = []) =
             console.log("User has not won any games");
         }
     }
-    console.log("this shouldn't ever run... investigate");
 };
 
-const getNextOptionHelper = (userChain, timeControl)=> {
-    const result = getMostRecentWin(userChain.at(-1).nextPlayer, timeControl);
+const getNextOptionHelper = async (userChain, timeControl)=> {
+    const result = await getMostRecentWin(userChain.at(-1).username, timeControl);
     if (!result) {
         if (userChain.length > 1) {
             userChain.pop();
-            getNextOptionHelper(userChain.at(-1).nextPlayer, timeControl)
+            return await getNextOptionHelper(userChain, timeControl);
         } else if (userChain.length === 1) {
-            const originalUser = userChain.pop();
-            getNextOptionHelper(originalUser.username);
+            const originalUser = userChain[0];
+            originalUser.next_player = originalUser.username;
+            return await getNextOptionHelper(originalUser);
         } else {
             console.error("The user has not won a single game in this time control it would seem");
             return false;
@@ -79,5 +79,5 @@ const getNextOptionHelper = (userChain, timeControl)=> {
     return result
 }
 
-export { fetchBestWin, getNextOptionHelper };
+export { fetchBestWin, getNextOptionHelper, getMostRecentWin };
 
