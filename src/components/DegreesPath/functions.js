@@ -62,19 +62,12 @@ const getMostRecentWin = async (username, timeControl, alreadyTriedUsers = []) =
 };
 
 const getNextOptionHelper = async (userChain, timeControl)=> {
-    const result = await getMostRecentWin(userChain.at(-1).username, timeControl);
+    const result = await getMostRecentWin(userChain.at(-1).next_player, timeControl);
     if (!result) {
-        if (userChain.length > 1) {
-            userChain.pop();
-            return await getNextOptionHelper(userChain, timeControl);
-        } else if (userChain.length === 1) {
-            const originalUser = userChain[0];
-            originalUser.next_player = originalUser.username;
-            return await getNextOptionHelper(originalUser);
-        } else {
-            console.error("The user has not won a single game in this time control it would seem");
-            return false;
-        }
+        userChain = [userChain[0]];
+        console.log("chain reset");
+        console.log(userChain);
+        return await getNextOptionHelper(userChain, timeControl);
     }
     return result
 }

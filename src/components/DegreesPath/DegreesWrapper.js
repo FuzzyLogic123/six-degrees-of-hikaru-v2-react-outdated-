@@ -7,7 +7,7 @@ import { queryDatabase } from '../../firebaseConfig';
 import { fetchBestWin, getNextOptionHelper, getMostRecentWin } from './functions';
 
 
-// TODO - Implement most recent win getAlternateUser() (as backup - can copy and paste previous implementation) - probably import that function for cleanliness
+// TODO - decide whether to branch off users or just start from the start
 // TODO - Prevent infinite loops/ cycles where players best wins go on forever (including when the backup suggests someone that will again cause an infinite loop)
 // can be achieved by using ref to track list of players that have been tried so far, never use these to enter the list.
 // TODO - add dropdown to selectTIME_CONTROLor blitz (update this in the path finding code)
@@ -16,7 +16,7 @@ import { fetchBestWin, getNextOptionHelper, getMostRecentWin } from './functions
 const MAX_REQUEST_ATTEMPTS = 1;
 
 function DegreesWrapper() {
-    const TIME_CONTROL = "blitz";
+    const TIME_CONTROL = "bullet";
     const [displayToUserChain, setDisplayToUserChain] = useState([]);
     const extendUserChain = async (userChain) => {
         const mostRecentUser = userChain.at(-1);
@@ -51,9 +51,12 @@ function DegreesWrapper() {
     }
 
     const onClickHandler = async () => {
-        const USERNAME = "playbyplayz"
-        const firstUserData = await fetchBestWin(USERNAME, TIME_CONTROL, MAX_REQUEST_ATTEMPTS)
-        if (!firstUserData.next_player) {
+        const USERNAME = "JRT829"
+        const firstUserData = await fetchBestWin(USERNAME, TIME_CONTROL, MAX_REQUEST_ATTEMPTS);
+        if (!firstUserData) {
+            console.error("invalid username");
+        }
+        if (!firstUserData?.next_player) {
             const mostRecentWin = await getMostRecentWin(USERNAME, TIME_CONTROL);
             if (mostRecentWin) {
                 firstUserData.next_player = mostRecentWin;
@@ -61,12 +64,9 @@ function DegreesWrapper() {
                 console.error("the player seems to have won no games within this time control");
                 return;
             }
-        } else if (!firstUserData) {
-            console.error("invalid username");
         }
         extendUserChain([firstUserData]);
     }
-
 
     return (
         <div id='six-degrees'>
