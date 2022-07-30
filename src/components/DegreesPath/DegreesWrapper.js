@@ -75,11 +75,14 @@ function DegreesWrapper() {
 
     const TIME_CONTROL = "bullet";
     const [displayToUserChain, setDisplayToUserChain] = useState([]);
+    const loadingRef = useRef(false);
     const extendUserChain = async () => {
+        loadingRef.current = true;
         const mostRecentUser = userChain.at(-1);
         if (mostRecentUser.name === "Hikaru Nakamura") {
             setDisplayToUserChain(userChain);
             console.log(userChain);
+            loadingRef.current = false;
             return userChain;
         }
         if (!mostRecentUser?.username) {
@@ -109,6 +112,7 @@ function DegreesWrapper() {
     }
 
     const onClickHandler = async () => {
+        if (loadingRef.current) { console.log("the thing was blocked"); return };
         const USERNAME = usernameTextRef.current.value;
         const firstUserData = await fetchBestWin(USERNAME, TIME_CONTROL, MAX_REQUEST_ATTEMPTS);
         if (!firstUserData) {
