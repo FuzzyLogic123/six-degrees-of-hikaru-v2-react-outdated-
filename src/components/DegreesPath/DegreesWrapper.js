@@ -4,7 +4,7 @@ import { ReactComponent as KingSvg } from '../../svg/king.svg';
 import HeroHeader from '../HeroHeader/HeroHeader';
 import DegreesPath from "./DegreesPath";
 import { queryDatabase } from '../../firebaseConfig';
-import { fetchBestWin, getNextOptionHelper, getMostRecentWin } from './functions';
+import { fetchBestWin } from './functions';
 
 
 // TODO - decide whether to branch off users or just start from the start
@@ -16,9 +16,66 @@ import { fetchBestWin, getNextOptionHelper, getMostRecentWin } from './functions
 const MAX_REQUEST_ATTEMPTS = 1;
 
 function DegreesWrapper() {
+
+    let alreadyTriedUsers = [];
+    let userChain = [];
+
+    // TODO - update usernameChain to a list of all users that have been tried so far
+    const getMostRecentWin = async (username, timeControl) => {
+        const res = await fetch(`https://api.chess.com/pub/player/${username}/games/archives`);
+        const data = await res.json();
+        if (data.code === 0) {
+            console.log('the username entered does not exist');
+            return false;
+        }
+        else if (!data.archives.length) {
+            console.log('the user has not played any games');
+            return false;
+        }
+        for (let i = data.archives.length - 1; i >= 0; i--) {
+            const gameListHttpRequest = await fetch(data.archives[i]);
+            const gameList = await gameListHttpRequest.json();
+            const candidateGames = [];
+            for (let i = gameList.games.length - 1; i >= 0; i--) {
+                const game = gameList.games[i];
+                if (game.time_class === timeControl && game.white.result === 'win' && game.white.username.toLowerCase() === username.toLowerCase() && !alreadyTriedUsers.includes(game.black.username)) {
+                    candidateGames.push({
+                        username: game.black.username,
+                        rating: game.black.rating
+                    });
+                } else if (game.time_class === timeControl && game.black.result === 'win' && game.black.username.toLowerCase() === username.toLowerCase() && !alreadyTriedUsers.includes(game.white.username)) {
+                    candidateGames.push({
+                        username: game.white.username,
+                        rating: game.white.rating
+                    });
+                }
+            }
+            if (candidateGames.length > 0) {
+                console.log(candidateGames);
+                const highestRatedRecentOpponent = candidateGames.sort((a, b) => b.rating - a.rating)[0];
+                console.log(highestRatedRecentOpponent.username, highestRatedRecentOpponent.rating);
+                alreadyTriedUsers.push(highestRatedRecentOpponent.username);
+                return highestRatedRecentOpponent.username;
+            } else {
+                console.log("User has not won any games");
+            }
+        }
+    };
+
+    const getNextOptionHelper = async (timeControl) => {
+        const result = await getMostRecentWin(userChain.at(-1).next_player, timeControl);
+        if (!result) {
+            userChain = [userChain[0]];
+            console.log("chain reset");
+            console.log(userChain);
+            return await getNextOptionHelper(timeControl);
+        }
+        return result
+    }
+
     const TIME_CONTROL = "bullet";
     const [displayToUserChain, setDisplayToUserChain] = useState([]);
-    const extendUserChain = async (userChain) => {
+    const extendUserChain = async () => {
         const mostRecentUser = userChain.at(-1);
         if (mostRecentUser.name === "Hikaru Nakamura") {
             setDisplayToUserChain(userChain);
@@ -41,13 +98,14 @@ function DegreesWrapper() {
         const bestWin = await fetchBestWin(mostRecentUser.next_player, TIME_CONTROL, MAX_REQUEST_ATTEMPTS);
         if (bestWin) {
             userChain.push(bestWin);
+            console.log(userChain);
             setDisplayToUserChain(userChain);
         } else {
-            const mostRecentWin = await getNextOptionHelper(userChain, TIME_CONTROL); //should basically always return someone unless every player in the chain has not won any games of that time control
+            const mostRecentWin = await getNextOptionHelper(TIME_CONTROL); //should basically always return someone unless every player in the chain has not won any games of that time control
             console.log(mostRecentWin);
             userChain.at(-1).next_player = mostRecentWin;
         }
-        await extendUserChain(userChain);
+        await extendUserChain();
     }
 
     const onClickHandler = async () => {
@@ -65,7 +123,8 @@ function DegreesWrapper() {
                 return;
             }
         }
-        extendUserChain([firstUserData]);
+        userChain = [firstUserData];
+        extendUserChain();
     }
 
     return (
