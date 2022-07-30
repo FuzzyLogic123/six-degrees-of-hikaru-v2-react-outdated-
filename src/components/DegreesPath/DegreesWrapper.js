@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import { React, useState, useRef } from 'react';
 import { ReactComponent as ConnectionsSvg } from '../../svg/connectionsSvg.svg';
 import { ReactComponent as KingSvg } from '../../svg/king.svg';
 import HeroHeader from '../HeroHeader/HeroHeader';
@@ -16,7 +16,7 @@ import { fetchBestWin } from './functions';
 const MAX_REQUEST_ATTEMPTS = 1;
 
 function DegreesWrapper() {
-
+    const usernameTextRef = useRef("");
     let alreadyTriedUsers = [];
     let userChain = [];
 
@@ -109,7 +109,7 @@ function DegreesWrapper() {
     }
 
     const onClickHandler = async () => {
-        const USERNAME = "JRT829"
+        const USERNAME = usernameTextRef.current.value;
         const firstUserData = await fetchBestWin(USERNAME, TIME_CONTROL, MAX_REQUEST_ATTEMPTS);
         if (!firstUserData) {
             console.error("invalid username");
@@ -131,7 +131,7 @@ function DegreesWrapper() {
         <div id='six-degrees'>
             <HeroHeader svg={<ConnectionsSvg />} colour={"#818CF8"} secondaryText={"See how you compare"} mainText={"Find your path"} />
             <div className="pt-12 pb-16 flex justify-center gap-6 w-full">
-                <input className="basis-2/4 inline-block text-white p-3 rounded-md border-2 border-slate-800 bg-slate-900 xl:text-xl text-lg" type="text" placeholder="chess.com username" />
+                <input spellCheck="false" ref={usernameTextRef} className="basis-2/4 inline-block text-white p-3 rounded-md border-2 border-slate-800 bg-slate-900 xl:text-xl text-lg" type="text" placeholder="chess.com username" />
                 <button onClick={onClickHandler} className='inline-block bg-slate-900 border-slate-800 border-2 p-3 rounded-md xl:text-xl text-lg text-white hover:stroke-slate-50 stroke-slate-400'>
                     <KingSvg />
                 </button>
