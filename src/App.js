@@ -82,7 +82,7 @@ function App() {
         <p className="text-white text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl leading-7 text-center font-Sen m-10 md:m-20 xl:m-32 2xl:mx-72">
           The aim of this website is to find the quickest path from you to Grandmaster Hikaru by games won.
           <br /><br />
-          Inspired by the six degrees of seperation, this website uses a database of 100 000 users, precalculating the chain to 3 degrees with breadth first search.
+          Inspired by the six degrees of seperation, this website uses a database of 100 000 users, calculating the chain to 3 degrees with breadth first search.
           <br /><br />
           If a user is not in the database, the algorithim will then find which user is the most optimal choice moving forward, until it finds a user in the database.
           <br /><br />
